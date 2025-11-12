@@ -4,8 +4,13 @@
 
 .card-button {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 20px;
+  padding: 32px 40px;
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -33,6 +38,15 @@
     &::before {
       opacity: 1;
     }
+
+    .card-button__icon-container {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-button__label {
+      transform: scale(1.05);
+    }
   }
 
   &:active {
@@ -48,16 +62,90 @@
     &:hover {
       transform: none;
       box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+
+      .card-button__icon-container {
+        transform: none;
+      }
+
+      .card-button__label {
+        transform: none;
+      }
+    }
+  }
+
+  // Conteneur de l'icône avec effet circulaire (mode vertical)
+  &__icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+
+    // Anneau lumineux autour de l'icône
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+  }
+
+  &__icon {
+    color: white;
+    font-size: 24px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  &__label {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease;
+  }
+
+  // Mode inline : icône et texte sur la même ligne
+  &--inline {
+    flex-direction: row;
+    padding: 16px 24px;
+    min-width: auto;
+    gap: 12px;
+
+    .card-button__icon {
+      font-size: 24px;
+    }
+
+    .card-button__label {
+      font-size: 16px;
+    }
+
+    &:hover {
+      .card-button__icon {
+        transform: scale(1.2) rotate(10deg);
+      }
+
+      .card-button__label {
+        transform: translateX(4px);
+      }
     }
   }
 }
 
-.button-content {
-  display: contents;
-}
-
 // Variantes de couleurs
-.button-card--primary {
+.card-button--primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
 
@@ -66,7 +154,7 @@
   }
 }
 
-.button-card--success {
+.card-button--success {
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
   box-shadow: 0 10px 30px rgba(17, 153, 142, 0.3);
 
@@ -75,7 +163,7 @@
   }
 }
 
-.button-card--danger {
+.card-button--danger {
   background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
   box-shadow: 0 10px 30px rgba(238, 9, 121, 0.3);
 
@@ -84,7 +172,7 @@
   }
 }
 
-.button-card--warning {
+.card-button--warning {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
 
@@ -93,7 +181,7 @@
   }
 }
 
-.button-card--info {
+.card-button--info {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
 
@@ -102,7 +190,7 @@
   }
 }
 
-.button-card--dark {
+.card-button--dark {
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
 

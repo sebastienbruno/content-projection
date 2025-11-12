@@ -3,17 +3,19 @@ import { Component, input, output } from '@angular/core';
 @Component({
   selector: 'app-projection-card-button',
   imports: [],
+  styleUrl: './projection-card-button.scss',
   template: `
-    <button type="button" class="button-card" [disabled]="disabled()" (click)="onClick()">
-      <div class="icon-slot">
-        <ng-content select="[slot=icon]" />
-      </div>
+    <button
+      type="button"
+      class="card-button button-card--primary"
+      [disabled]="disabled()"
+      (click)="onClick()"
+    >
       <div class="button-content">
         <ng-content />
       </div>
     </button>
   `,
-  styleUrl: './projection-card-button.scss',
 })
 export class CardButton {
   disabled = input<boolean>(false);

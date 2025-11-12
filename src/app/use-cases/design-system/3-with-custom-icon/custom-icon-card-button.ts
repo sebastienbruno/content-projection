@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
-  selector: 'app-icon-card-button',
+  selector: 'app-custom-icon-card-button',
   imports: [],
   template: `
     <!-- Debug: inline={{inline()}} -->
@@ -25,9 +25,9 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
       }
     </button>
   `,
-  styleUrl: './icon-card-button.scss',
+  styleUrl: './custom-icon-card-button.scss',
 })
-export class IconCardButton {
+export class CustomIconCardButton {
   disabled = input<boolean, string | boolean>(false, { transform: (value: string | boolean) => coerceBooleanProperty(value) });
   label = input.required<string>();
   icon = input<string | undefined>(undefined);

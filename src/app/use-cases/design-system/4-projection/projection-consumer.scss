@@ -1,0 +1,120 @@
+:host {
+  display: block;
+}
+
+.card-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  padding: 32px 40px;
+
+  &.inline {
+    flex-direction: row;
+    padding: 16px 24px;
+    min-width: auto;
+    gap: 12px;
+
+    .icon {
+      font-size: 24px;
+    }
+
+    .label {
+      font-size: 16px;
+    }
+
+    &:hover {
+      .icon {
+        transform: scale(1.2) rotate(10deg);
+      }
+
+      .label {
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+// Conteneur de l'icône avec effet circulaire
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  // Anneau lumineux autour de l'icône
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+}
+
+.icon {
+  color: white;
+  font-size: 24px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.label {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
+}
+
+// Gestion des effets hover sur le contenu projeté (mode vertical)
+app-projection-card-button:hover {
+  .icon-container {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .label {
+    transform: scale(1.05);
+  }
+}
+
+// Mode inline : icône et texte sur la même ligne (sans icon-container)
+app-projection-card-button.inline {
+  .card-button {
+    flex-direction: row;
+    padding: 16px 24px;
+    min-width: auto;
+    gap: 12px;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  &:hover {
+    .icon {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .label {
+      transform: translateX(4px);
+    }
+  }
+}
